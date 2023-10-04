@@ -5,7 +5,7 @@ COPY . .
 
 RUN go mod download
 RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
-RUN xcaddy build --with github.com/SaladTechnologies/caddy-web-proxy
+RUN xcaddy build
 
 FROM alpine:3
 
