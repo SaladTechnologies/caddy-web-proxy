@@ -1,0 +1,16 @@
+{
+	order dynamicproxy first
+}
+
+:3000 {
+	dynamicproxy "x-upstream-host"
+	reverse_proxy * {
+    to {http.vars.upstream_host}:443
+    transport http {
+      tls
+    }
+    header_up Host {http.vars.upstream_host}
+    header_up -Server
+    header_up -X-Forwarded-For
+  }
+}
